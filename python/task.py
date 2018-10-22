@@ -1,4 +1,7 @@
-﻿# Заполните код преведенных ниже функций. Функция main() уже настроена
+﻿import datetime
+
+
+# Заполните код преведенных ниже функций. Функция main() уже настроена
 # для вызова функций с несколькими различными параметрами,
 # и выводит 'OK' в случае, если вызов функции корректен.
 # Начальный код каждой функции содержит 'return'
@@ -14,14 +17,30 @@
 # / — разделить (первое на второе).
 # В остальных случаях вернуть строку "unknown".
 def arithmetic(arg1, arg2, op):
-    return
+    if op == '+':
+        return arg1 + arg2
+    elif op == '-':
+        return arg1 - arg2
+    elif op == '*':
+        return arg1 * arg2
+    elif op == '/':
+        return arg1 / arg2
+    else:
+        return 'unknown'
 
 
 # B. Високосный год
 # Написать функцию is_is_year_leap_leap,
 # принимающую 1 аргумент — год, и возвращающую True, если год високосный, и False иначе.
 def is_year_leap(year):
-    return
+    if year % 400 == 0:
+        return True
+    if year % 100 == 0:
+        return False
+    if year % 4 == 0:
+        return True
+    else:
+        return False
 
 
 # C. Квадрат 
@@ -29,7 +48,7 @@ def is_year_leap(year):
 # и возвращающую 3 значения (с помощью кортежа):
 # периметр квадрата, площадь квадрата и диагональ квадрата.
 def square(a):
-    return
+    return 4 * a, a ** 2, a ** 0.5
 
 
 # D. Времена года
@@ -37,7 +56,20 @@ def square(a):
 # принимающую 1 аргумент — номер месяца (от 1 до 12), 
 # и возвращающую время года, которому этот месяц принадлежит ('winter', 'spring', 'summer', 'autumn').
 def season(month):
-    return
+    return {
+        1: 'winter',
+        2: 'winter',
+        3: 'spring',
+        4: 'spring',
+        5: 'spring',
+        6: 'summer',
+        7: 'summer',
+        8: 'summer',
+        9: 'autumn',
+        10: 'autumn',
+        11: 'autumn',
+        12: 'winter',
+    }[month]
 
 
 # E. Банковский вклад
@@ -47,21 +79,36 @@ def season(month):
 # Написать функцию deposit, принимающая аргументы money и years, и возвращающую сумму,
 # которая будет на счету пользователя.
 def deposit(money, years):
-    return
+    for i in range(years):
+        money += money * 0.1
+    return round(money, 4)
 
 
 # F. Простые числа
 # Написать функцию is_prime, принимающую 1 аргумент — число от 0 до 1000,
 # и возвращающую True, если оно простое, и False - иначе
 def is_prime(num):
-    return
+    if num < 2:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, num // 2, 2):
+        if num % i == 0:
+            return False
+    return True
 
 
 # G. Правильная дата
 # Написать функцию date, принимающую 3 аргумента — день, месяц и год.
 # Вернуть True, если такая дата есть в нашем календаре, и False иначе.
 def date(day, month, year):
-    return
+    try:
+        datetime.datetime(year, month, day)
+        return True
+    except ValueError:
+        return False
 
 
 # H. XOR-шифрование
@@ -70,11 +117,15 @@ def date(day, month, year):
 # зашифрованную путем применения функции XOR (^) над символами строки с ключом.
 # Написать также функцию XOR_uncipher, которая по зашифрованной строке и ключу восстанавливает исходную строку.
 def XOR_cipher(str, key):
-    return
+    result_string = ''
+    for i in range(len(str)):
+        current_sumbol = str[i]
+        result_string += chr(ord(current_sumbol) ^ ord(key[i % len(key)]))
+    return result_string
 
 
 def XOR_uncipher(str, key):
-    return
+    return XOR_cipher(str, key)
 
 
 # Простая функция test() используется в main() для вывода
@@ -93,7 +144,7 @@ def main():
     test(arithmetic(3, 4, '+'), 7)
     test(arithmetic(3, 4, '-'), -1)
     test(arithmetic(3, 4, '*'), 12)
-    test(arithmetic(3, 4, '/'), 3/4)
+    test(arithmetic(3, 4, '/'), 3 / 4)
     test(arithmetic(3, 4, '.'), 'unknown')
 
     print(u'\nВисокосный год')
@@ -104,13 +155,14 @@ def main():
 
     print(u'\nКвадрат')
     for a in range(10):
-        test(square(a), (4*a, a**2, a**0.5))
+        test(square(a), (4 * a, a ** 2, a ** 0.5))
 
     print(u'\nВремена года')
     seasons = [
-        None, 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter'
+        None, 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn',
+        'autumn', 'winter'
     ]
-    for month in xrange(1, 13):
+    for month in range(1, 13):
         test(season(month), seasons[month])
 
     print(u'\nБанковский вклад')
@@ -124,10 +176,10 @@ def main():
 
     print(u'\nПростые числа')
     primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-    for number in xrange(1, 101):
+    for number in range(1, 101):
         test(is_prime(number), number in primes)
-    big_primes = [947, 953, 967, 971, 977, 983, 991, 997]
-    for number in xrange(940, 1000):
+    big_primes = [947, 953, 967, 971, 977, 983, 991, 997]  # 941 - простое
+    for number in range(940, 1000):
         test(is_prime(number), number in big_primes)
 
     print(u'\nПравильная дата')

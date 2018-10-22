@@ -14,12 +14,11 @@
 # а первый и последний символы этих строк совпадают.
 # Примечание: в python нет оператора ++. Но += сработает.
 def match_ends(words):
-    i=0
+    i = 0
     for w in words:
         if len(w) >= 2 and w[0] == w[-1]:
             i += 1
     return i
-
 
 
 # B. Начинающиеся с X в начале
@@ -31,9 +30,7 @@ def match_ends(words):
 # Подсказка: это можно сделать при помощи склеивания 2х заранее отсортированных списков
 def front_x(words):
     words.sort()
-    return [w for w in words if w[0]=='x'] + [w for w in words if w[0]!='x']
-    
-
+    return [w for w in words if w[0] == 'x'] + [w for w in words if w[0] != 'x']
 
 
 # C. Сортировка по последнему числу
@@ -45,7 +42,7 @@ def front_x(words):
 # Подсказка: используйте параметр key= функции сортировки, 
 # чтобы получить последний элемент подсписка.
 def sort_last(lists):
-    return sorted(lists, key=lambda l:l[1])
+    return sorted(lists, key=lambda l: l[1])
 
 
 # D. Удаление соседей
@@ -96,7 +93,7 @@ def main():
     print(u'Удаление соседей')
     test(remove_adjacent([1, 2, 2, 3]), [1, 2, 3])
     test(remove_adjacent([2, 2, 3, 3, 3, 3]), [2, 3])
-    test(remove_adjacent([4, 5, 5, 4, 4]), [4, 5, 4])
+    test(remove_adjacent([4, 5, 5, 4, 4]), [4, 5, 4])  # требует уточнения условия задачи для этого случая
     test(remove_adjacent([]), [])
 
 
