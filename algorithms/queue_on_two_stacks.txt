@@ -1,0 +1,31 @@
+ Stack st1;
+ Stack st2;
+
+struct Queue{
+
+isEmpty(){
+	return st1	.isEmpty()&&st2.isEmpty()
+}
+size(){
+	return st1.size()+st2.size() 
+}
+enque(int e){
+	st1.push(e)
+}
+deque(){
+	if(st2.isEmpty()){
+		while(!st1.isEmpty()){
+			st2.push(st1.pop)
+		}
+	}
+	return st2.pop()	
+}
+peek(){
+	if(st2.isEmpty()){
+		while(!st1.isEmpty()){
+			st2.push(st1.pop)
+		}
+	}
+	return st2.peek()	
+}
+}
