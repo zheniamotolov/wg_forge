@@ -97,4 +97,5 @@ int[] Prim(Graph){
 return mst
     
 }
-
+//2
+O(E*(V+E))
