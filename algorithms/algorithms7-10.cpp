@@ -98,4 +98,4 @@ return mst
     
 }
 //2
-O(E*(V+E))
+O((V+E))
