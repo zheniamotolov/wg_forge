@@ -1,5 +1,6 @@
 ﻿# Срезы
-
+import networkx as nx
+import pygraphviz as pgv
 # Заполните код преведенных ниже функций. Функция main() уже настроена
 # для вызова функций с несколькими различными параметрами,
 # и выводит 'OK' в случае, если вызов функции корректен.
@@ -22,6 +23,11 @@
 # Например, из 'a b c d e f' получится 'b d f'
 # Решите задачу в одну строчку используя срезы.
 def even(s):
+    nx.draw()
+    A = pgv.AGraph()
+    A.node_attr['shape'] = 'circle'
+    A.node_attr['style'] = 'filled'
+    A.node_attr['fontsize'] = '1'
     s = s.split(' ')
     return ' '.join(s[1::2])
 
